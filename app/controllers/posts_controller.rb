@@ -1,6 +1,7 @@
 class PostController < ApplicationController
 
     get '/home' do
+        @post = Post.all
         erb :'post/index'
     end
 
