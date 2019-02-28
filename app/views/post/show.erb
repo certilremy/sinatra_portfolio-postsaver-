@@ -2,5 +2,10 @@
 <h4>Title:<%= @post.title%></h4> <br>
 <p>Content: <%= @post.content%></p> <br>
 
-<a href="to do edit">Edit</a><br>
+<a href="to do edit">Edit</a>||
+<form method="post" action="/post/<%=@post.id%>/delete">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" role="button" value="Delete">
+   </form>
 <a href="/home">Go to home</a>
+

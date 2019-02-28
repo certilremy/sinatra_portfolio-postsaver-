@@ -1,8 +1,10 @@
 <h1>welcome bellow are your post</h1>
 <% @post.each do |p|%>
+<a href="/post/<%= p.id%>">
 <h4><%= p.title%><br></h4>
 <p><%= p.content%><br> </p>
 <h1>____________________________</h1>
+</a>
 <% end%><br>
 
 <a href= "/post/new"> Create a new Post</a>

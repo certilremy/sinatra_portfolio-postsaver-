@@ -14,16 +14,19 @@ class PostController < ApplicationController
       
     end
 
-    get '/post/:id' do
-        @post = Post.find(params[:id])
-        erb :'post/show'    
-    end
+    
 
     get '/post/new' do
        
         erb :'post/new'
     end
 
+    get '/post/:id' do
+        @post = Post.find(params[:id])
+        erb :'post/show'    
+    end
+
+    
     get '/post/:id/edit' do
         @post = Post.find(params[:id])
         erb :'post/edit'
@@ -37,16 +40,12 @@ class PostController < ApplicationController
         erb :'post/show'
     end
 
-   
+    
+    delete '/post/:id/delete' do 
+        @post = Post.find(params[:id])
+        @post.delete
+        redirect to '/home'
+    end
 
-
-    #patch ':id' do
-       # @post = Post.find(params[:id])
-       # @post.title = params[:title]
-       # @post.content = params[:content]
-       # @post.save
-        #redirect to "/post/#{@post.id}"
-        
-    #end
     
 end
