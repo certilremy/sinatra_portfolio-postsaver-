@@ -9,12 +9,13 @@ class UserController < ApplicationController
         # binding.pry
         @user = User.find_by(email: params["email"],password: params["password"])
         session[:user_id] = @user.id
-        @post = Post.all
+        @post = current_user.post.all
         erb :"/post/index"
     
       end
 
-      get '/users/login' do 
+      get '/users/login' do
+         
         
         erb :'/users/login'
       end
@@ -33,7 +34,7 @@ class UserController < ApplicationController
         @user = User.create(name:name,email:email,password:pasword )
         session[:user_id] = @user.id
 
-      @post = Post.all
+        @post = current_user.post.all
         erb :"/post/index"
         
       end

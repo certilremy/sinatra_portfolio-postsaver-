@@ -2,7 +2,7 @@ class PostController < ApplicationController
 
     get '/home' do
         if logged_in?
-            @post = Post.all
+            @post = current_user.post.all
             @user = User.find(session[:user_id])
             erb :'post/index'
           else
@@ -32,22 +32,36 @@ class PostController < ApplicationController
     end
 
     get '/post/:id' do
+        if logged_in?
         @post = Post.find(params[:id])
-        erb :'post/show'    
+        erb :'post/show'   
+    else
+        redirect"/users/login"
+     end 
     end
 
     
     get '/post/:id/edit' do
+        if logged_in?
         @post = Post.find(params[:id])
         erb :'post/edit'
+    else
+        redirect"/users/login"
+     end
     end
 
     post '/post/create' do
+        if logged_in?
        title = params[:title]
        content = params[:content]
-       @post = Post.create(title:title, content:content)
-
+       #@post = Post.create(title:title, content:content)
+       @post = current_user.post.build(params[:post])
+       @post.save
         erb :'post/show'
+
+    else
+        redirect"/users/login"
+     end
     end
 
     

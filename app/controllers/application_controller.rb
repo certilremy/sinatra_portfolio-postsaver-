@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
 
   get "/" do
     if logged_in?
-      @post = Post.all
+      @post = current_user.post.all
       @user = User.find(session[:user_id])
       erb :'post/index'
     else
