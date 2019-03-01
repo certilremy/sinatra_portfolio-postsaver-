@@ -34,7 +34,13 @@ class PostController < ApplicationController
     get '/post/:id' do
         if logged_in?
         @post = Post.find(params[:id])
-        erb :'post/show'   
+
+        if @post && @post.user == current_user
+        erb :'post/show'  
+        
+        else 
+            erb :'post/index'
+        end
     else
         redirect"/users/login"
      end 
