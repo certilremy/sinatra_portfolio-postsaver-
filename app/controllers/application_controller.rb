@@ -20,7 +20,13 @@ class ApplicationController < Sinatra::Base
 
 
   get "/" do
-    erb :'/users/login'
+    if logged_in?
+      @post = Post.all
+      @user = User.find(session[:user_id])
+      erb :'post/index'
+    else
+      redirect "/users/login"
+   end
   end
 
 end
