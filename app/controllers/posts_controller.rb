@@ -13,11 +13,23 @@ class PostController < ApplicationController
     end
 
     patch '/update/:id' do
-        @post = Post.find(params[:id])
-        @post.title = params[:title]
-        @post.content = params[:content]
-        @post.save
-        redirect to "/post/#{@post.id}"
+        if logged_in?
+            @post = Post.find(params[:id])
+                if @post && @post.user == current_user
+                    @post.title = params[:title]
+                    @post.content = params[:content]
+                    @post.save
+                    redirect to "/post/#{@post.id}"
+                else
+
+                    @message = 'Access denyed! you do not have permision to edit this post'
+                    erb :error
+
+                end
+
+        else
+            redirect"/users/login"
+        end
       
     end
 
@@ -54,7 +66,13 @@ class PostController < ApplicationController
     get '/post/:id/edit' do
         if logged_in?
         @post = Post.find(params[:id])
+        if @post && @post.user == current_user
         erb :'post/edit'
+
+        else 
+            @message = 'Access denyed! you do not have permision to edit this post'
+            erb :error
+        end
     else
         @message ='You must login first'
         redirect"/users/login"
