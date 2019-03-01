@@ -1,8 +1,14 @@
 class PostController < ApplicationController
 
     get '/home' do
-        @post = Post.all
-        erb :'post/index'
+        if logged_in?
+            @post = Post.all
+            @user = User.find(session[:user_id])
+            erb :'post/index'
+          else
+            redirect"/users/login"
+         end
+        
     end
 
     patch '/update/:id' do
