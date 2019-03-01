@@ -39,7 +39,7 @@ class PostController < ApplicationController
         erb :'post/show'  
         
         else 
-            erb :'post/index'
+            erb :error
         end
     else
         redirect"/users/login"
