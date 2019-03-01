@@ -1,4 +1,4 @@
-<h1>welcome bellow are your post</h1>
+<h1>welcome <%= @user.name%> bellow are your post</h1>
 <% @post.each do |p|%>
 <a href="/post/<%= p.id%>">
 <h4><%= p.title%><br></h4>

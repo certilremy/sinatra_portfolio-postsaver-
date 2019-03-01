@@ -9,13 +9,24 @@ class UserController < ApplicationController
         # binding.pry
         @user = User.find_by(email: params["email"],pasword: params["password"])
         session[:user_id] = @user.id
-        erb :"/users/home.html"
+        erb :"/post/index"
     
       end
 
       get 'users/login' do 
         
         erb :'users/login'
+      end
+
+      post "/users/signup" do
+        # raise params.inspect
+        name = params[:name]
+        email = params[:email]
+        pasword = params[:password]
+        @user = User.create(name:name,email:email,pasword:pasword )
+        session[:user_id] = @user.id
+        erb :"/post/index"
+        
       end
 
       get 'users/signup' do 
