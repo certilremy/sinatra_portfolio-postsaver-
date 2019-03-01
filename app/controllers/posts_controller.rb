@@ -39,7 +39,7 @@ class PostController < ApplicationController
         if logged_in?
         erb :'post/new'
     else
-        @message ='You must login first'
+        @message ='You must login first to create new post please login or sign up '
         redirect"/users/login"
      end
 
@@ -47,30 +47,30 @@ class PostController < ApplicationController
 
     get '/post/:id' do
         if logged_in?
-        @post = Post.find(params[:id])
+            @post = Post.find(params[:id])
 
         if @post && @post.user == current_user
-        erb :'post/show'  
+                erb :'post/show'  
         
         else 
             @message = 'Access denyed! you do not have permision to see this post'
             erb :error
         end
     else
-        @message ='You must login first'
-        redirect"/users/login"
+            @message ='You must login first'
+            redirect"/users/login"
      end 
     end
 
     
     get '/post/:id/edit' do
         if logged_in?
-        @post = Post.find(params[:id])
-        if @post && @post.user == current_user
-        erb :'post/edit'
+            @post = Post.find(params[:id])
+                if @post && @post.user == current_user
+                    erb :'post/edit'
 
         else 
-            @message = 'Access denyed! you do not have permision to edit this post'
+            @message ='Access denyed! you do not have permision to edit this post'
             erb :error
         end
     else
@@ -81,24 +81,30 @@ class PostController < ApplicationController
 
     post '/post/create' do
         if logged_in?
-       title = params[:title]
-       content = params[:content]
-       #@post = Post.create(title:title, content:content)
-       @post = current_user.post.build(params[:post])
-       @post.save
-        erb :'post/show'
+            title = params[:title]
+            content = params[:content]
+            #@post = Post.create(title:title, content:content)
+            @post = current_user.post.build(params[:post])
+            @post.save
+            erb :'post/show'
 
-    else
-        @message ='You must login first'
-        redirect"/users/login"
+       else
+            @message ='You must login first'
+            redirect"/users/login"
      end
     end
 
     
     delete '/post/:id/delete' do 
-        @post = Post.find(params[:id])
-        @post.delete
-        redirect to '/home'
+        if logged_in?
+            @post = Post.find(params[:id])
+            @post.delete
+            redirect to '/home'
+
+        else 
+            @message ='You must login first'
+            redirect"/users/login"
+        end
     end
 
     

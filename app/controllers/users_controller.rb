@@ -1,8 +1,8 @@
 class UserController < ApplicationController
     
-      get 'users/show' do 
-        #@user = User.find(params[:id])
-        erb :'/users/show'
+      get '/users/show' do 
+         @message = 'The page you are looking for does not exist; it may have been moved, or removed'
+         erb :error
       end
 
       post '/users/login' do
@@ -10,14 +10,21 @@ class UserController < ApplicationController
         @user = User.find_by(email: params["email"],password: params["password"])
         session[:user_id] = @user.id
         @post = current_user.post.all
+    
         erb :"/post/index"
     
       end
 
       get '/users/login' do
-         
-        
-        erb :'/users/login'
+         if logged_in?
+          @user = User.find(session[:user_id])
+          @post = current_user.post.all
+          erb :"/post/index"
+          
+
+         else  
+          erb :'/users/login'
+         end
       end
 
       get '/users/signup' do 
@@ -27,6 +34,7 @@ class UserController < ApplicationController
 
 
       post "/users/signup" do
+        if !logged_in?
         # raise params.inspect
         name = params[:name]
         email = params[:email]
@@ -36,19 +44,34 @@ class UserController < ApplicationController
 
         @post = current_user.post.all
         erb :"/post/index"
+
+        else
+          @user = User.find(session[:user_id])
+          erb :"/post/index"
+        end
         
       end
 
    
     
       get "/users/:id" do
-       # @user = User.find(params[:id])
-        erb :'/users/show'
+        if logged_in?
+            @user = User.find(session[:user_id])
+          # @user = User.find(params[:id])
+            erb :'/users/show'
+        else 
+          @message = 'Access denyed! you do not have permision to see this!'
+          erb :error
+        end
       end
     
       get'/logout' do
+        if logged_in?
         session.clear
         erb :"/users/login"
+        else 
+
+        end
       end
 
           
