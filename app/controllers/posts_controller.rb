@@ -23,8 +23,12 @@ class PostController < ApplicationController
     
 
     get '/post/new' do
-       
+        if logged_in?
         erb :'post/new'
+    else
+        redirect"/users/login"
+     end
+
     end
 
     get '/post/:id' do
