@@ -6,6 +6,7 @@ class PostController < ApplicationController
             @user = User.find(session[:user_id])
             erb :'post/index'
           else
+            @message ='You must login first'
             redirect"/users/login"
          end
         
@@ -26,6 +27,7 @@ class PostController < ApplicationController
         if logged_in?
         erb :'post/new'
     else
+        @message ='You must login first'
         redirect"/users/login"
      end
 
@@ -39,9 +41,11 @@ class PostController < ApplicationController
         erb :'post/show'  
         
         else 
+            @message = 'Access denyed! you do not have permision to see this post'
             erb :error
         end
     else
+        @message ='You must login first'
         redirect"/users/login"
      end 
     end
@@ -52,6 +56,7 @@ class PostController < ApplicationController
         @post = Post.find(params[:id])
         erb :'post/edit'
     else
+        @message ='You must login first'
         redirect"/users/login"
      end
     end
@@ -66,6 +71,7 @@ class PostController < ApplicationController
         erb :'post/show'
 
     else
+        @message ='You must login first'
         redirect"/users/login"
      end
     end
