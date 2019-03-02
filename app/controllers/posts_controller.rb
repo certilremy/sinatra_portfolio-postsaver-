@@ -23,7 +23,7 @@ class PostController < ApplicationController
                     redirect to "/post/#{@post.id}"
                 else
 
-                    @message = 'Access denyed! you do not have permision to edit this post'
+                    @message = 'Access denied! you do not have permision to edit this post'
                     erb :error
 
                 end
@@ -54,7 +54,7 @@ class PostController < ApplicationController
                 erb :'post/show'  
         
         else 
-            @message = 'Access denyed! you do not have permision to see this post'
+            @message = 'Access denied! you do not have permision to see this post'
             erb :error
         end
     else

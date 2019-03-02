@@ -64,7 +64,7 @@ class UserController < ApplicationController
           # @user = User.find(params[:id])
             erb :'/users/show'
         else 
-          @message = 'Access denyed! you do not have permision to see this!'
+          @message = 'Access denied! you do not have permision to see this!'
           erb :error
         end
       end
