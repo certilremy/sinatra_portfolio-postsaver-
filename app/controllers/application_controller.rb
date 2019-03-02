@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
       @user = User.find(session[:user_id])
       erb :'post/index'
     else
-      redirect "/users/login"
+      erb :index
    end
   end
 
