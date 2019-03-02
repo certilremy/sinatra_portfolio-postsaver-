@@ -10,6 +10,7 @@ class UserController < ApplicationController
         @user = User.find_by(email: params["email"],password: params["password"])
         session[:user_id] = @user.id
         @post = current_user.post.all
+        @total_post = current_user.post.count
     
         erb :"/post/index"
     
@@ -19,6 +20,7 @@ class UserController < ApplicationController
          if logged_in?
           @user = User.find(session[:user_id])
           @post = current_user.post.all
+          @total_post = current_user.post.count
           erb :"/post/index"
           
 
@@ -43,10 +45,12 @@ class UserController < ApplicationController
         session[:user_id] = @user.id
 
         @post = current_user.post.all
+        @total_post = current_user.post.count
         erb :"/post/index"
 
         else
           @user = User.find(session[:user_id])
+          @total_post = current_user.post.count
           erb :"/post/index"
         end
         

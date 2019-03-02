@@ -1,9 +1,14 @@
-<h1>welcome <%= @user.name%> bellow are your post</h1><br>
+<h1>welcome <%= @user.name%> </h1><br>
+<h3><%= @total_post %> Posts created in the last few days </h3>
 <h3><a href="/logout"> Log out</a></h3> <br>
 <% @post.each do |p|%>
 <a href="/post/<%= p.id%>">
 <h4><%= p.title%><br></h4>
-<p><%= p.content%><br> </p>
+<p> <%= p.content%><br> </p>
+<p>created : <%= p.created_at%><br> </p>
+<p>updated : <%= p.updated_at%><br> </p>
+
+
 <h1>____________________________</h1>
 </a>
 <% end%><br>

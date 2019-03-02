@@ -4,6 +4,7 @@ class PostController < ApplicationController
         if logged_in?
             @post = current_user.post.all
             @user = User.find(session[:user_id])
+            @total_post = current_user.post.count
             erb :'post/index'
           else
             @message ='You must login first'
@@ -99,6 +100,7 @@ class PostController < ApplicationController
         if logged_in?
             @post = Post.find(params[:id])
             @post.delete
+            @total_post = current_user.post.count
             redirect to '/home'
 
         else 
