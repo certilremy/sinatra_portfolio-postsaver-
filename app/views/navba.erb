@@ -7,13 +7,13 @@
     </h1>
 
     <ul>
-            <li> <a href = "#" >Home</a></li>
+            <li> <a href = "/" >Home</a></li>
             <li> <a href = "#" >About</a></li>
             <li> <a href = "#" >Privacy policy</a></li>
             <% if !logged_in? %>
-            <li> <a href = "#" >Login</a></li>
+            <li> <a href = "/users/login" >Login</a></li>
             <% else%>
-            <li> <a href = "#" >logout</a></li>
+            <li> <a href = "/logout" >logout</a></li>
             <%end%>
     </ul>
 
