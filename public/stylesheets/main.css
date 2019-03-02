@@ -113,6 +113,16 @@
 
 }
 
+#main-footer{
+
+  background: #333;
+}
+
+.bg-dark{
+  background: #333;
+}
+}
+
 .l-heading
 {
   font-size: 4rem;
