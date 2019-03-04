@@ -12,14 +12,8 @@ gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
 gem 'passenger', '~> 5.0', '>= 5.0.30'
+gem 'pg', '~> 0.20'
 
-group :development do
-  gem 'sqlite3','~> 1.3.6'  
-end
-
-group :production do
-  gem 'pg', '~> 0.20'
-end
 
 group :test do
   gem 'rspec'
@@ -28,3 +22,6 @@ group :test do
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
 
+group :development do
+  gem 'sqlite3','~> 1.3.6'  
+end
