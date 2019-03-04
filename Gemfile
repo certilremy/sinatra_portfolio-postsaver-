@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 gem 'rack-flash3'
+gem 'passenger', '~> 5.0', '>= 5.0.30'
 
 group :test do
   gem 'rspec'

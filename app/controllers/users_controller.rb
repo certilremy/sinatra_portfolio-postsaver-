@@ -8,12 +8,18 @@ class UserController < ApplicationController
       post '/users/login' do
         # binding.pry
         @user = User.find_by(email: params["email"],password: params["password"])
+
+        if @user
         session[:user_id] = @user.id
         @post = current_user.post.all
         @total_post = current_user.post.count
     
         erb :"/post/index"
-    
+
+        else
+          @message = "No user found for these info."
+          erb :'/users/login'
+        end
       end
 
       get '/users/login' do
