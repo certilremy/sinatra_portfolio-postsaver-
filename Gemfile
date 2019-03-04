@@ -10,12 +10,15 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
 gem "tux"
-gem 'pg'
 gem 'rack-flash3'
 gem 'passenger', '~> 5.0', '>= 5.0.30'
 
 group :development do
   gem 'sqlite3','~> 1.3.6'  
+end
+
+group :production do
+  gem 'pg', '~> 0.20'
 end
 
 group :test do
