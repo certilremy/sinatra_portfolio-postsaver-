@@ -83,6 +83,12 @@
     margin: 0 0.25rem;
   }
 
+  .switch { 
+    color:#fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+
+  }
   #navbar ul li a:hover {
     background: lightblue;
     border-radius: 5px;
