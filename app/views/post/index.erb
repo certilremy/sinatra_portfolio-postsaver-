@@ -1,21 +1,34 @@
 
-<div class= "container">
-<h1>welcome <%= @user.name%> </h1><br>
 
-<h3><%= @total_post %> Posts created in the last few days </h3>
+<h1 class = "l-heading">welcome <%= @user.name%> </h1><br>
 
-<h3><a href="/logout"> Log out</a></h3> <br>
 
-<div class ="post">
+<section id="article">
+<div id ="post-container">
+<div class = "page-container">
+<table style="width:100%">
+<tr>
+    <th>Title</th>
+    <th>Content</th> 
+    <th>Create date</th>
+    <th>Action</th>
+</tr>
 <% @post.each do |p|%>
-<a href="/post/<%= p.id%>">
-<h4><%= p.title%><br></h4>
-<p> <%= p.content%><br> </p>
-<p>created : <%= p.created_at%><br> </p>
-<p>updated : <%= p.updated_at%><br> </p>
-</a>
-<% end%><br>
+<tr>
+    <th><%= p.title%></th>
+    <th><%= p.content%></th> 
+    <th> <%= p.created_at%></th>
+    <th><a  href="/post/<%= p.id%>">View post</a></th>
+  </tr>
+  <% end%>
 
+</table>
+
+<aside class="bg-primary">
+    <div class="user-info">
+        <p><a  id = "create" href= "/post/new"> Create a new Post</a>
+    </div>
+</aside>
+<div>
 </div>
-<p><a href= "/post/new"> Create a new Post</a>
-</div>
+</section>
